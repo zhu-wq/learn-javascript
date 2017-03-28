@@ -1,7 +1,7 @@
 const Koa = require('koa');
 
 const bodyParser = require('koa-bodyparser');
-
+// 注意require('koa-router')返回的是函数:
 const router = require('koa-router')();
 
 const app = new Koa();
@@ -12,7 +12,7 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-// parse request body:
+// parse request body, 由于middleware的顺序很重要，这个koa-bodyparser必须在router之前被注册到app对象上:
 app.use(bodyParser());
 
 // add url-route:
@@ -20,7 +20,7 @@ router.get('/hello/:name', async (ctx, next) => {
     var name = ctx.params.name;
     ctx.response.body = `<h1>Hello, ${name}!</h1>`;
 });
-
+// 一个简单的登录表单
 router.get('/', async (ctx, next) => {
     ctx.response.body = `<h1>Index</h1>
         <form action="/signin" method="post">
@@ -29,10 +29,10 @@ router.get('/', async (ctx, next) => {
             <p><input type="submit" value="Submit"></p>
         </form>`;
 });
-
+// 一个简单的登录验证返回画面
 router.post('/signin', async (ctx, next) => {
     var
-        name = ctx.request.body.name || '',
+        name = ctx.request.body.name || '',  //如果该字段不存在，默认值设置为''
         password = ctx.request.body.password || '';
     console.log(`signin with name: ${name}, password: ${password}`);
     if (name === 'koa' && password === '12345') {
