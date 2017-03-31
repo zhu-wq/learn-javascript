@@ -17,7 +17,7 @@
         "url": "https://github.com/michaelliao/learn-javascript.git"
     },
     "dependencies": {
-        "sequelize": "3.24.1",
-        "mysql": "2.11.1"
+        "sequelize": "^3.30.4",
+        "mysql": "^2.13.0"
     }
 }
