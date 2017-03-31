@@ -44,7 +44,8 @@ Pet.create({
 }).catch(function (err) {
     console.log('failed: ' + err);
 });
-
+//Sequelize返回的对象是Promise
+//可以用ES7的await来调用任何一个Promise对象, 但是await只有一个限制，就是必须在async函数中调用
 (async () => {
     var dog = await Pet.create({
         id: 'd-' + now,
