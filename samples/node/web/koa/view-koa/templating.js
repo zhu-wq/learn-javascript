@@ -7,7 +7,7 @@ function createEnv(path, opts) {
         watch = opts.watch || false,
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
-            new nunjucks.FileSystemLoader(path, {
+            new nunjucks.FileSystemLoader(path || 'views', {
                 noCache: noCache,
                 watch: watch,
             }), {
