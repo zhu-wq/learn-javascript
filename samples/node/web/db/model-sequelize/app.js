@@ -29,14 +29,14 @@ let
 })();
 
 (async () => {
-    try {
-        var pets = await Pet.findAll();// 这里得到了一个返回错误
-    } catch (err) {
-        console.log(err); // 这里捕捉到错误 `error`
-        return;
-    }
+//     try {
+//         var pets = await Pet.findAll();// 这里得到了一个返回错误
+//     } catch (err) {
+//         console.log(err); // 这里捕捉到错误 `error`
+//         return;
+//     }
 
-    // var pets = await Pet.findAll();
+    var pets = await Pet.findAll();
     for(var i=0; i< pets.length; i++) {
         var pet = pets[i];
         console.log("sqlQueryResult >>> " + JSON.stringify(pet));
